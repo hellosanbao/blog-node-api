@@ -2,9 +2,7 @@ const bcrypt = require('bcryptjs')
 const { sequelize } = require('../../core/db')
 const { Sequelize, Model } = require('sequelize')
 
-class User extends Model{
-
-}
+class User extends Model{}
 
 User.init({
     id:{
