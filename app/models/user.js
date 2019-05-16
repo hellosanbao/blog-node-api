@@ -19,7 +19,7 @@ User.init({
         set(val){
             const salt = bcrypt.genSaltSync(10)  //10指的是生成salt的成本，越高，安全性越高，性能消耗越大
             const psw = bcrypt.hashSync(val,salt)
-            this.setDataValue(psw)
+            this.setDataValue('password',psw)
         }
     },
     phone:{
