@@ -73,16 +73,28 @@ class TokenValidator extends LinValidator{
 
     validateLoginType(vals){
         if(!vals.body.type){
-            throw new Error('type不能为空')
+            throw new Error('登录类型错误')
         }
         if(!LoginType.isThisType(vals.body.type)){
-            throw new Error('type参数不合法')
+            throw new Error('登录类型错误')
         }
+    }
+}
+
+//token验证校验
+
+class NotEmptyValidator extends LinValidator{
+    constructor(){
+        super()
+        this.token = [
+            new Rule('isLength','token不能为空',{min:1})
+        ]
     }
 }
 
 module.exports = {
     PositiveValidator,
     RegisterValidator,
-    TokenValidator
+    TokenValidator,
+    NotEmptyValidator
 }
