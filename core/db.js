@@ -1,30 +1,31 @@
 const Sequelize = require('sequelize')
 const {
-    dbName,
+    dbname,
     host,
     port,
-    password,
-    user
-} = require('../config/config').database
+    user,
+    password
+} = require('../config').db
 
-
-const sequelize = new Sequelize(dbName, user, password,{
-    dialect:'mysql',  //数据库类型
-    host,             //数据库host
-    port,              //数据库port
-    timezone:'+08:00',  //时区
-    logging:true,
-    define:{
-        timestamps:true,  //是否自动生成创建时间和更新时间creat_time update_time
-        createdAt:'creat_time',
-        updatedAt:'update_time',
-        deletedAt:'delete_time',
-        paranoid:true,  //是否自动生成删除时间
-        underscored:true,  //将字段命名方式换成下划线连接
+const sequelize = new Sequelize(dbname, user, password, {
+    dialect: 'mysql',
+    host, port,
+    // logging: true,
+    timezone: '+08:00',
+    define: {
+        timestamps: true,
+        paranoid: true,
+        createdAt: 'created_at',
+        updatedAt: 'updated_at',
+        deletedAt: 'deleted_at',
+        underscored: true,
+        freezeTableName: true
     }
 })
 
-sequelize.sync()
+sequelize.sync({
+    force:true
+})
 
 module.exports = {
     sequelize
